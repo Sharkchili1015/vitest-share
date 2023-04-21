@@ -15,11 +15,12 @@ export const useTodotore = defineStore("todo", () => {
       content: "Write a blog post",
     },
   ];
+  const isRealClear = ref<Boolean>(false)
   const todoList = ref<Todo[]>([]);
   watch(
     () => todoList.value,
     () => {
-      if (todoList.value.length === 0) {
+      if (todoList.value.length === 0 && !isRealClear.value) {
         todoList.value.push(...defaultData);
       }
     },{
@@ -49,12 +50,18 @@ export const useTodotore = defineStore("todo", () => {
   const doneTodo = (index:number) =>{
     todoList.value[index].done = !todoList.value[index].done
   }
+
+  const removeAll = () =>{
+    isRealClear.value = true
+    todoList.value = []
+  }
   return {
     count,
     add,
     addTodo,
     removeTodo,
     todoList,
-    doneTodo
+    doneTodo,
+    removeAll
   };
 });

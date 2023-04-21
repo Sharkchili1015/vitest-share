@@ -4,6 +4,7 @@
       <label>New ToDo </label>
       <input v-model="newTodo" id="newTodo" name="newTodo" autocomplete="off" />
       <button id="newBtn" @click="addTodo()">Add ToDo</button>
+      <button id="removeAllBtn" @click="store.removeAll">Remove All</button>
     </div>
     <h2>ToDo List</h2>
     <ul class="todo-ul">

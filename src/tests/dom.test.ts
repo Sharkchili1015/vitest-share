@@ -36,6 +36,24 @@ describe("测试remove功能", () => {
     
     });
 });
+describe("测试removeAll功能", () => {
+    beforeEach(() => {
+        setActivePinia(createPinia());
+      });
+    test("清除所有todo", async () => {
+      expect(ToDoList).toBeTruthy();
+      const store = useTodotore();
+        
+      const wrapper = shallowMount(ToDoList, {});
+      const removeBtn = wrapper.find('#removeAllBtn');
+      expect(removeBtn.exists()).toBe(true);
+      await removeBtn.trigger("click");
+      await nextTick()
+      expect(store.todoList.length).toBe(0);
+      const empty =wrapper.find('#empty');
+      expect(empty.exists()).toBe(true);
+    });
+});
 
 describe("测试addTodo功能", () => {
     beforeEach(() => {
@@ -51,10 +69,6 @@ describe("测试addTodo功能", () => {
       expect(input.element.value).toBe("newTodo");
       const addBtn = wrapper.find('#newBtn');
       await addBtn.trigger("click");
-      nextTick(()=>{
-      console.log("🚀 ~ file: dom.test.ts:63 ~ test ~ store.todoList:", store.todoList)
-
-    })
       expect(store.todoList.length).toBe(2);
       expect(store.todoList[1]).toEqual({
         content:"newTodo",
