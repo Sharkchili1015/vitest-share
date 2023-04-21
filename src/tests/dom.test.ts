@@ -65,3 +65,83 @@ describe("测试addTodo功能", () => {
     
     });
 });
+
+describe("测试Command:addTodo功能", () => {
+    beforeEach(() => {
+        setActivePinia(createPinia());
+      });
+    test("在初始化的基础上添加一个top指令的todo", async () => {
+      expect(ToDoList).toBeTruthy();
+      const store = useTodotore();
+        
+      const wrapper = mount(ToDoList, {});
+      const input = wrapper.find("input");
+      await input.setValue("top:newTodo");
+      expect(input.element.value).toBe("top:newTodo");
+      const addBtn = wrapper.find('#newBtn');
+      await addBtn.trigger("click");
+      expect(store.todoList.length).toBe(2);
+      await nextTick()
+      expect(store.todoList[0].content).toBe('newTodo')
+      expect(store.todoList[0]).toEqual({
+        done:false,
+        content:"newTodo"
+    })
+      const empty =wrapper.find('#empty');
+      expect(empty.exists()).toBe(false);
+    
+    });
+});
+
+describe("测试Command:addTodo功能", () => {
+    beforeEach(() => {
+        setActivePinia(createPinia());
+      });
+    test("在初始化的基础上添加一个done指令的todo", async () => {
+      expect(ToDoList).toBeTruthy();
+      const store = useTodotore();
+        
+      const wrapper = mount(ToDoList, {});
+      const input = wrapper.find("input");
+      await input.setValue("done:newTodo");
+      expect(input.element.value).toBe("done:newTodo");
+      const addBtn = wrapper.find('#newBtn');
+      await addBtn.trigger("click");
+      expect(store.todoList.length).toBe(2);
+      await nextTick()
+      expect(store.todoList[1].content).toBe('newTodo')
+      expect(store.todoList[1]).toEqual({
+        done:true,
+        content:"newTodo"
+    })
+      const empty =wrapper.find('#empty');
+      expect(empty.exists()).toBe(false);
+    
+    });
+});
+describe("测试Command:addTodo功能", () => {
+    beforeEach(() => {
+        setActivePinia(createPinia());
+      });
+    test("在初始化的基础上添加一个done&top指令的todo", async () => {
+      expect(ToDoList).toBeTruthy();
+      const store = useTodotore();
+        
+      const wrapper = mount(ToDoList, {});
+      const input = wrapper.find("input");
+      await input.setValue("top:done:newTodo");
+      expect(input.element.value).toBe("top:done:newTodo");
+      const addBtn = wrapper.find('#newBtn');
+      await addBtn.trigger("click");
+      expect(store.todoList.length).toBe(2);
+      await nextTick()
+      expect(store.todoList[0].content).toBe('newTodo')
+      expect(store.todoList[0]).toEqual({
+        done:true,
+        content:"newTodo"
+    })
+      const empty =wrapper.find('#empty');
+      expect(empty.exists()).toBe(false);
+    
+    });
+});

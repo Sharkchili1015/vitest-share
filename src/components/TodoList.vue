@@ -1,10 +1,10 @@
 <template>
     <h1>ToDo App</h1>
-    <form @submit.prevent="addTodo()">
+    <div class="form">
       <label>New ToDo </label>
       <input v-model="newTodo" id="newTodo" name="newTodo" autocomplete="off" />
-      <button id="newBtn">Add ToDo</button>
-    </form>
+      <button id="newBtn" @click="addTodo()">Add ToDo</button>
+    </div>
     <h2>ToDo List</h2>
     <ul class="todo-ul">
       <li v-for="(todo, index) in todoList" :key="index">

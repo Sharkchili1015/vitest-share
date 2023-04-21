@@ -39,7 +39,7 @@ body {
       font-size: 28px;
       text-align: center;
     }
-    form {
+    .form {
       display: flex;
       flex-direction: column;
       width: 100%;
