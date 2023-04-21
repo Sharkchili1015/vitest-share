@@ -1,38 +1,9 @@
 <template>
-  <h1>ToDo App</h1>
-  <form @submit.prevent="addTodo()">
-    <label>New ToDo </label>
-    <input v-model="newTodo" name="newTodo" autocomplete="off" />
-    <button>Add ToDo</button>
-  </form>
-  <h2>ToDo List</h2>
-  <ul>
-    <li v-for="(todo, index) in todoList" :key="index">
-      <span :class="{ done: todo.done }" @click="store.doneTodo(index)">{{
-        todo.content
-      }}</span>
-      <button @click="store.removeTodo(index)">Remove</button>
-    </li>
-  </ul>
-  <h4 v-if="todoList.length === 0">Empty list.</h4>
+  <TodoListVue/>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { useTodotore } from "./store/modules/todo";
-
-const store = useTodotore();
-const { todoList } = store;
-
-const newTodo = ref<String>("");
-function addTodo() {
-  store.addTodo(newTodo.value as string);
-    newTodo.value = "";
-  }
-
-
-
-
+import TodoListVue from "./components/TodoList.vue";
 </script>
 
 <style lang="scss">
