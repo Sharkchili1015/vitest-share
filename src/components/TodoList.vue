@@ -20,19 +20,16 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useTodotore } from "../store/modules/todo";
+import { storeToRefs } from "pinia";
 
 const store = useTodotore();
-const { todoList } = store;
+const { todoList } = storeToRefs(store);
 
 const newTodo = ref<String>("");
 function addTodo() {
   store.addTodo(newTodo.value as string);
     newTodo.value = "";
   }
-
-
-
-
 </script>
 <style lang='scss'>
 </style>

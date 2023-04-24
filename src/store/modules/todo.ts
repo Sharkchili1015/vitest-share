@@ -1,14 +1,16 @@
 import { defineStore } from "pinia";
-import { ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 type Todo = {
   done: boolean;
   content: string;
 };
 export const useTodotore = defineStore("todo", () => {
+
   const count = ref(0);
   const add = () => {
     count.value++;
   };
+
   const defaultData = [
     {
       done: false,
@@ -53,7 +55,7 @@ export const useTodotore = defineStore("todo", () => {
 
   const removeAll = () =>{
     isRealClear.value = true
-    todoList.value = []
+    todoList.value = [];
   }
   return {
     count,
