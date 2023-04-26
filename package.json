@@ -11,7 +11,10 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.7",
     "@vue/test-utils": "^2.3.2",
+    "decimal.js-light": "^2.5.1",
+    "lodash-es": "^4.17.21",
     "pinia": "^2.0.34",
     "sass": "^1.62.0",
     "vue": "^3.2.47"
