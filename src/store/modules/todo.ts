@@ -11,24 +11,8 @@ export const useTodotore = defineStore("todo", () => {
     count.value++;
   };
 
-  const defaultData = [
-    {
-      done: false,
-      content: "Write a blog post",
-    },
-  ];
-  const isRealClear = ref<Boolean>(false)
   const todoList = ref<Todo[]>([]);
-  watch(
-    () => todoList.value,
-    () => {
-      if (todoList.value.length === 0 && !isRealClear.value) {
-        todoList.value.push(...defaultData);
-      }
-    },{
-      immediate:true
-    }
-  );
+
   const addTodo = (todo: string) => {
     const isTop = todo.includes("top:");
     const isDone = todo.includes("done:");
@@ -54,7 +38,6 @@ export const useTodotore = defineStore("todo", () => {
   }
 
   const removeAll = () =>{
-    isRealClear.value = true
     todoList.value = [];
   }
   return {
