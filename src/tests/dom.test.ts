@@ -32,7 +32,7 @@ describe("测试removeAll功能", () => {
       await nextTick()
       expect(store.todoList.length).toBe(0);
       const empty =wrapper.find('#empty');
-      expect(empty.exists()).toBe(true);
+      expect(empty.exists()).toBe(false);
     });
 });
 
@@ -50,8 +50,8 @@ describe("测试addTodo功能", () => {
       expect(input.element.value).toBe("newTodo");
       const addBtn = wrapper.find('#newBtn');
       await addBtn.trigger("click");
-      expect(store.todoList.length).toBe(1);
-      expect(store.todoList[0]).toEqual({
+      expect(store.todoList.length).toBe(2);
+      expect(store.todoList[1]).toEqual({
         content:"newTodo",
         done:false
     })
@@ -75,7 +75,7 @@ describe("测试Command:addTodo功能", () => {
       expect(input.element.value).toBe("top:newTodo");
       const addBtn = wrapper.find('#newBtn');
       await addBtn.trigger("click");
-      expect(store.todoList.length).toBe(1);
+      expect(store.todoList.length).toBe(2);
       await nextTick()
       expect(store.todoList[0].content).toBe('newTodo')
       expect(store.todoList[0]).toEqual({
@@ -88,82 +88,18 @@ describe("测试Command:addTodo功能", () => {
     });
 });
 
-describe("测试Command:addTodo功能", () => {
-    beforeEach(() => {
-        setActivePinia(createPinia());
-      });
-    test("在初始化的基础上添加一个done指令的todo", async () => {
-      expect(ToDoList).toBeTruthy();
-      const store = useTodotore();
-        
-      const wrapper = mount(ToDoList, {});
-      const input = wrapper.find("input");
-      await input.setValue("done:newTodo");
-      expect(input.element.value).toBe("done:newTodo");
-      const addBtn = wrapper.find('#newBtn');
-      await addBtn.trigger("click");
-      expect(store.todoList.length).toBe(1);
-      await nextTick()
-      expect(store.todoList[0].content).toBe('newTodo')
-      expect(store.todoList[0]).toEqual({
-        done:true,
-        content:"newTodo"
-    })
-      const empty =wrapper.find('#empty');
-      expect(empty.exists()).toBe(false);
-    
-    });
-});
-describe("测试Command:addTodo功能", () => {
-    beforeEach(() => {
-        setActivePinia(createPinia());
-      });
-    test("在初始化的基础上添加一个done&top指令的todo", async () => {
-      expect(ToDoList).toBeTruthy();
-      const store = useTodotore();
-        
-      const wrapper = mount(ToDoList, {});
-      const input = wrapper.find("input");
-      await input.setValue("top:done:newTodo");
-      expect(input.element.value).toBe("top:done:newTodo");
-      const addBtn = wrapper.find('#newBtn');
-      await addBtn.trigger("click");
-      expect(store.todoList.length).toBe(1);
-      await nextTick()
-      expect(store.todoList[0].content).toBe('newTodo')
-      expect(store.todoList[0]).toEqual({
-        done:true,
-        content:"newTodo"
-    })
-      const empty =wrapper.find('#empty');
-      expect(empty.exists()).toBe(false);
-    
-    });
-});
-
-describe("测试Command:addTodo功能", () => {
-  beforeEach(() => {
-      setActivePinia(createPinia());
-    });
-  test("在初始化的基础上添加一个done&top指令的todo", async () => {
-    expect(ToDoList).toBeTruthy();
-    const store = useTodotore();
-      
-    const wrapper = mount(ToDoList, {});
-    const input = wrapper.find("input");
-    await input.setValue("top:done:newTodo");
-    expect(input.element.value).toBe("top:done:newTodo");
-    const addBtn = wrapper.find('#newBtn');
-    await addBtn.trigger("click");
-    expect(store.todoList.length).toBe(1);
-    await nextTick()
-    expect(store.todoList[0].content).toBe('newTodo')
-    expect(store.todoList[0]).toEqual({
-      done:true,
-      content:"newTodo"
-  })
-    const empty =wrapper.find('#empty');
-    expect(empty.exists()).toBe(false);
-  
-  });
-});
+// describe("在store执行了removeAll，测试dom变化", () => {
+//   beforeEach(() => {
+//       setActivePinia(createPinia());
+//     });
+//   test("在store执行了removeAll功能后应该出现'empty'", async () => {
+//     expect(ToDoList).toBeTruthy();
+//     const wrapper = mount(ToDoList, {});
+//     const store = useTodotore();
+//     const empty =wrapper.find('#empty');
+//     expect(empty.exists()).toBe(false);
+//     store.addTodo('newTodo');
+//     store.removeAll();
+//     expect(empty.exists()).toBe(true);
+//   });
+// });

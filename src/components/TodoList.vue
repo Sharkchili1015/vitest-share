@@ -23,7 +23,8 @@ import { useTodotore } from "../store/modules/todo";
 import { storeToRefs } from "pinia";
 
 const store = useTodotore();
-const { todoList } = storeToRefs(store);
+// const { todoList } = storeToRefs(store);
+const {todoList} = store;
 
 const newTodo = ref<String>("");
 function addTodo() {

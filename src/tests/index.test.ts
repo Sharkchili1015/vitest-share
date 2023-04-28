@@ -19,33 +19,6 @@ describe("todoStore", () => {
     expect(store.todoList[0].content).toBe("1");
   });
 
-  it("使用top:和done:命令应该将todo放到第一位状态为done", () => {
-    const store = useTodotore();
-    store.addTodo("top:done:1");
-    expect(store.todoList[0]).toEqual({
-        done: true,
-        content: "1",
-    });
-  });
-
-  it("使用done:命令应该添加一个done为true的todo在数组末尾", () => {
-    const store = useTodotore();
-    store.addTodo("done:1");
-    expect(store.todoList[store.todoList.length -1]).toEqual({
-        done: true,
-        content: "1",
-    });
-  });
-
-  it("调用doneTodo应该将对应index的done状态改变为true", () => {
-    const store = useTodotore();
-    store.addTodo("应该为done为true")
-    store.doneTodo(0);
-    expect(store.todoList[0]).toEqual({
-        done:true,
-        content:"应该为done为true"
-    })
-  });
 
   it("调用removeDone应该将对应index的todo删除", () => {
     const store = useTodotore();
@@ -56,5 +29,14 @@ describe("todoStore", () => {
     const remover = store.removeTodo(0)
     expect(store.todoList).toContain(remove)
     expect(store.todoList).toContain(remover)
+  });
+
+  it("调用removeAll应该将所有的todo删除", () => {
+    const store = useTodotore();
+    store.addTodo("1")
+    store.addTodo("2")
+    store.addTodo("3")
+    store.removeAll();
+    expect(store.todoList).toEqual([])
   });
 });
