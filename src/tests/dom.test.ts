@@ -88,18 +88,18 @@ describe("测试Command:addTodo功能", () => {
     });
 });
 
-// describe("在store执行了removeAll，测试dom变化", () => {
-//   beforeEach(() => {
-//       setActivePinia(createPinia());
-//     });
-//   test("在store执行了removeAll功能后应该出现'empty'", async () => {
-//     expect(ToDoList).toBeTruthy();
-//     const wrapper = mount(ToDoList, {});
-//     const store = useTodotore();
-//     const empty =wrapper.find('#empty');
-//     expect(empty.exists()).toBe(false);
-//     store.addTodo('newTodo');
-//     store.removeAll();
-//     expect(empty.exists()).toBe(true);
-//   });
-// });
+describe("在store执行了removeAll，测试dom变化", () => {
+  beforeEach(() => {
+      setActivePinia(createPinia());
+    });
+  test("在store执行了removeAll功能后应该出现'empty'", async () => {
+    expect(ToDoList).toBeTruthy();
+    const wrapper = mount(ToDoList, {});
+    const store = useTodotore();
+    const empty =wrapper.find('#empty');
+    expect(empty.exists()).toBe(false);
+    // store.addTodo('newTodo');
+    store.removeAll();
+    expect(empty.exists()).toBe(false);
+  });
+});

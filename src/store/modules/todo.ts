@@ -6,10 +6,6 @@ type Todo = {
 };
 export const useTodotore = defineStore("todo", () => {
 
-  const count = ref(0);
-  const add = () => {
-    count.value++;
-  };
 
   const todoList = ref<Todo[]>([{
     done:false,
@@ -43,8 +39,6 @@ export const useTodotore = defineStore("todo", () => {
     todoList.value = [];
   }
   return {
-    count,
-    add,
     addTodo,
     removeTodo,
     todoList,
