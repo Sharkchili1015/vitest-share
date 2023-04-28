@@ -40,8 +40,8 @@ describe("todoStore", () => {
   it("调用doneTodo应该将对应index的done状态改变为true", () => {
     const store = useTodotore();
     store.addTodo("应该为done为true")
-    store.doneTodo(1);
-    expect(store.todoList[1]).toEqual({
+    store.doneTodo(0);
+    expect(store.todoList[0]).toEqual({
         done:true,
         content:"应该为done为true"
     })
@@ -52,8 +52,8 @@ describe("todoStore", () => {
     store.addTodo("1")
     store.addTodo("2")
     store.addTodo("3")
-    const remove = store.removeTodo(2)
-    const remover = store.removeTodo(1)
+    const remove = store.removeTodo(1)
+    const remover = store.removeTodo(0)
     expect(store.todoList).toContain(remove)
     expect(store.todoList).toContain(remover)
   });
